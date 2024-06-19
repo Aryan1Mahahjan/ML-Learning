@@ -1,0 +1,1 @@
+The goal is to dig into large amounts of data and discover interesting relation between attributes.

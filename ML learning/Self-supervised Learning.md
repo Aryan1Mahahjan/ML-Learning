@@ -1,0 +1,1 @@
+Machine learning involves actually generating a fully labeled dataset from a fully unlabeled. It is usally used for fine tuning the model for a different task.
