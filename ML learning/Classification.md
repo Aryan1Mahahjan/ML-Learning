@@ -121,26 +121,8 @@ for train_index, test_index in skfolds.split(X_train, y_train_5):
 ```
 
 ```
-from sklearn.model_selection import StratifiedKFold
-from sklearn.base import clone
-
-skfolds = StratifiedKFold(n_splits = 3,)
-
-for train_index, test_index in skfolds.split(X_train, y_train_5):
-    clone_clf = clone(sgd_clf)
-    X_train_folds = X_train[train_index]
-    y_train_folds = y_train_5[train_index]
-    X_test_fold = X_train[test_index]
-    y_test_fold = y_train_5[test_index]
-
-    clone_clf.fit(X_train_folds, y_train_folds)
-    y_pred = clone_clf.predict(X_test_fold)
-    n_correct = sum(y_pred == y_test_fold)
-    print(n_correct /len(y_pred))
-```
-
 Output:
-```
+
 0.95035
 0.96035
 0.9604
@@ -179,8 +161,8 @@ array([[53892,   687],
 Analyzing the output :
 
 53,892 Correctly Classified as non-5s (True Negative)
-687 Wrong Classified as 5s (False Positives)
-1891 Wrong Classified as non-5s (False Negative)
+687 Wrongly Classified as 5s (False Positives)
+1891 Wrongly Classified as non-5s (False Negative)
 3530 Correctly Classified as 5s (True Positive)
 
 In a perfect Classifier would only have True Negative and True Positive.
@@ -192,7 +174,7 @@ Equation
 
 precision = TP/{TP+FP}
 
-The ration of positive instances that are correctly detected by classifier is called  *recall*.
+The ratio of positive instances that are correctly detected by classifier is called  *recall*.
 
 recall = TP/{TP+FN}
 
@@ -225,3 +207,6 @@ Using  F<sub>1</sub>  isn't always desirable, because in some case you care more
 
 ## The Precision/Recall Trade-off
 
+SGDClassifier makes a score based on *Decision Function*. 
+
+If the score is greater than the threshold it assigns it positive, if it is less than the threshold then is assigns it to be negative.
